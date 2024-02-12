@@ -22,5 +22,5 @@ The code emphasizes defensive programming techniques to handle errors gracefully
 Comments and clear variable names enhance code readability and maintainability.
 
 Feedback and Improvement:
-User suggestions for program enhancement are encouraged and welcomed.
+Any suggestions for program enhancement are encouraged and welcomed.
 Continuous improvement efforts focus on enhancing user-friendliness, robustness, and code readability.
