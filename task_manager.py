@@ -257,8 +257,8 @@ def read_tasks_from_file(file_path):
     # If tasks.txt does not exist, print a message 
     # and initialize task_list as an empty list.
     except FileNotFoundError:
-        print(Colors.RED + "Tasks file not found. Initializing with empty task \
-        list." + Colors.RESET)
+        print(Colors.RED + "Tasks file not found. Initializing with empty task" \
+        "list." + Colors.RESET)
         task_list = []
 
     return task_list
