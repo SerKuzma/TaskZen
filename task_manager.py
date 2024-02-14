@@ -711,9 +711,9 @@ while True:
         display_statistics(curr_user, username_password)
 
     elif menu == 'gr':
-     generate_task_overview(task_list)
-     generate_user_overview(username_password, task_list)
-     print(Colors.GREEN + "Reports generated successfully." + Colors.RESET)
+        generate_task_overview(task_list)
+        generate_user_overview(username_password, task_list)
+        print(Colors.GREEN + "Reports generated successfully." + Colors.RESET)
 
     elif menu == 'e':
         print(Colors.PURPLE + 'Goodbye!!!' + Colors.RESET)
