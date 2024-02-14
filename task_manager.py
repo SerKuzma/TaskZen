@@ -10,6 +10,7 @@ from colorama import Fore, Style
 # Name constanta for date_time format
 DATETIME_STRING_FORMAT = "%Y-%m-%d"
 
+
 # ANSI escape codes for text color
 class Colors:
     RESET = '\033[0m'
@@ -19,6 +20,7 @@ class Colors:
     BLUE = '\033[94m'
     PURPLE = '\033[95m'
     CYAN = '\033[96m'
+
 
 ''' Creates function to create txt file for keeping user's data,
 if doesn't exist.
@@ -49,6 +51,7 @@ def read_user_data():
         username_password = {'admin': 'password'}
 
     return username_password
+
 
 # Creates function to login
 def login(username_password):
@@ -82,6 +85,7 @@ def login(username_password):
 
     return curr_user
 
+
 # Creates function to register users
 def register_user(username_password):
     new_username = input(Colors.YELLOW + "New Username: " + Colors.RESET)
@@ -110,6 +114,7 @@ def register_user(username_password):
     # If passwords don't match, displays an error message
     else:
         print(Colors.RED + "Passwords do not match" + Colors.RESET)
+
 
 # Creates function to delete users
 def delete_user(username_password, task_list):
@@ -159,6 +164,7 @@ def delete_user(username_password, task_list):
     else:
         # Prints message if the user to be deleted is not found
         print(Colors.RED + f"User '{username_to_delete}' not found." + Colors.RESET)
+
 
 # Creates function to create tasks for users
 def add_task(task_list, username_password):
@@ -221,6 +227,7 @@ def add_task(task_list, username_password):
         task_file.write("\n".join(task_list_to_write))
     print(Colors.GREEN + "Task successfully added." + Colors.RESET)
 
+
 # Creates function to initialize task_list
 def read_tasks_from_file(file_path):
     task_list = []  # Initialize an empty list to store task dictionaries
@@ -260,6 +267,7 @@ def read_tasks_from_file(file_path):
 
     return task_list
 
+
 # Creates function to change the color of dates
 def color_due_date(date, today):
     """
@@ -281,6 +289,7 @@ def color_due_date(date, today):
         return f"{Fore.YELLOW}{date}{Style.RESET_ALL}"
     else:
         return f"{Fore.GREEN}{date}{Style.RESET_ALL}"
+
 
 # Creates function to view all tasks
 def view_all(task_list):
@@ -308,6 +317,7 @@ def view_all(task_list):
             disp_str += f"{Fore.RED}User deleted{Style.RESET_ALL}\n"
         # Print the formatted task information
         print(disp_str)
+
 
 # Creates function to view user's tasks
 def view_mine(task_list, curr_user):
@@ -382,7 +392,8 @@ def view_mine(task_list, curr_user):
         else:
             print(Colors.RED + "Invalid option." + Colors.RESET)
             print()
-            
+
+
 # Creates function to edit tasks
 def edit_task(task, task_list):
     # Check if the task is already completed
@@ -405,6 +416,7 @@ def edit_task(task, task_list):
 
         if action_choice == '1':
             task['completed'] = True
+            break
 
         # Modify the username of the task
         elif action_choice == '2':
@@ -455,13 +467,10 @@ def edit_task(task, task_list):
         print()
         break 
 
+
 # Creates function to delete tasks by admin
 def delete_task_by_number(task_list, task_number, curr_user):
-    # Checks if the user is admin
-    if curr_user != 'admin':
-        print(Colors.RED + "Tasks can only be deleted by the admin." + Colors.RESET)
-        return False
-    
+        
     # Checks if the task number is valid
     if task_number < 1 or task_number > len(task_list):
         print(Colors.RED + "Invalid task number" + Colors.RESET)
@@ -470,6 +479,7 @@ def delete_task_by_number(task_list, task_number, curr_user):
     # Delete the task from the task list
     del task_list[task_number - 1]
     return True
+
 
 # Creates function to update tasks in the tasks.txt file
 def update_task_in_file(task_list):
@@ -492,6 +502,7 @@ def update_task_in_file(task_list):
             task_list_to_write.append(";".join(str_attributes))
         # Writes the task data to the tasks.txt file, each task on a new line
         task_file.write("\n".join(task_list_to_write))
+
 
 # Creates function to generate and write task overview to task_overview.txt
 def generate_task_overview(task_list):
@@ -544,15 +555,11 @@ def generate_task_overview(task_list):
             if task['username'] not in username_password:  
                 task_overview_file.write("User deleted\n")
             task_overview_file.write("\n")
-            
+
+
 # Creates function to display statistics by admin only
 def display_statistics(curr_user, username_password):
     
-    # Checks if the current user is not admin, if so, deny access to statistics
-    if curr_user != 'admin':
-        print(Colors.RED + "Statistics can only be displayed by the admin." + Colors.RESET)
-        return
-
     # Checks if tasks.txt and user.txt exist, generate them if not
     if not os.path.exists("tasks.txt") or not os.path.exists("user.txt"):
         print(Colors.PURPLE + "Generating necessary files..." + Colors.RESET)
@@ -598,14 +605,11 @@ def display_statistics(curr_user, username_password):
     f"{Style.RESET_ALL} {percentage_overdue:.2f}%\n")
 
 
-
-
-
 # Creates function to generate and write user overview to user_overview.txt
 def generate_user_overview(username_password, task_list):
     total_users = len(username_password)
     total_tasks = len(task_list)
-
+    
     # Checks if there are no users or tasks available
     if total_users == 0 or total_tasks == 0:
         print("No users or tasks available.")
@@ -651,6 +655,17 @@ def generate_user_overview(username_password, task_list):
             f"{percentage_overdue_user_tasks:.2f}%\n")
             user_overview_file.write("\n")
 
+
+# Creates function for checks if current user is admin
+def admin_check(curr_user):
+    # Checks if the current user is admin & enhance admin's rights
+    if curr_user != 'admin':
+        print(Colors.RED + "This option available for the admin only" + Colors.RESET)
+        return False
+    else:
+        return True
+
+
 # Calls function to read user data
 username_password = read_user_data()
 
@@ -672,7 +687,7 @@ while True:
     va - View all tasks
     vm - View my task
     ds - Display statistics (admin only)
-    gr - Generate reports
+    gr - Generate reports (admin only)
     e - Exit
     : ''').lower()
 
@@ -680,27 +695,35 @@ while True:
     if menu == 'r':
         register_user(username_password)
 
-    elif menu == 'd':
-        delete_user(username_password, task_list)
+    elif menu == 'd':        
+        if admin_check(curr_user):  # Checks if current user is admin  
+            delete_user(username_password, task_list)
+        
+        else:
+            continue  # Go back to main menu
 
     elif menu == 'a':
         add_task(task_list, username_password)
 
-    elif menu == 'del':  
-        try:
-            task_number_to_delete = int(input(Colors.YELLOW + 
-            "Enter the number of the task you want to delete: " + Colors.RESET))
-        except ValueError:
-            print(Colors.RED + "Invalid input. Please enter a number." + Colors.RESET)
-            continue # Go back to the main menu 
+    elif menu == 'del':        
+        if admin_check(curr_user):  # Checks if current user is admin
+            try:
+                task_number_to_delete = int(input(Colors.YELLOW + 
+                "Enter the number of the task you want to delete: " + Colors.RESET))
+            except ValueError:
+                print(Colors.RED + "Invalid input. Please enter a number." + Colors.RESET)
+                continue # Go back to the main menu 
 
-        if delete_task_by_number(task_list, task_number_to_delete, curr_user):
-            print(Colors.GREEN + "Task deleted successfully." + Colors.RESET)
-            update_task_in_file(task_list)  
+            if delete_task_by_number(task_list, task_number_to_delete, curr_user):
+                print(Colors.GREEN + "Task deleted successfully." + Colors.RESET)
+                update_task_in_file(task_list)  
+            else:
+                print(Colors.RED + "Failed to delete task." + Colors.RESET)
+                continue  # Go back to the main menu
+
         else:
-            print(Colors.RED + "Failed to delete task." + Colors.RESET)
-            continue  # Go back to the main menu
-            
+            continue  # Go back to main menu
+
     elif menu == 'va':
         view_all(task_list)
 
@@ -708,13 +731,20 @@ while True:
         view_mine(task_list, curr_user)
     
     elif menu == 'ds':
-        display_statistics(curr_user, username_password)
+        if admin_check(curr_user):  # Checks if current user is admin
+            display_statistics(curr_user, username_password)
+        else:
+            continue  # Go back to main menu        
 
     elif menu == 'gr':
-        generate_task_overview(task_list)
-        generate_user_overview(username_password, task_list)
-        print(Colors.GREEN + "Reports generated successfully." + Colors.RESET)
+        if admin_check(curr_user):  # Checks if current user is admin
+            generate_task_overview(task_list)
+            generate_user_overview(username_password, task_list)
+            print(Colors.GREEN + "Reports generated successfully." + Colors.RESET)
 
+        else:
+            continue  # Go back to main menu
+            
     elif menu == 'e':
         print(Colors.PURPLE + 'Goodbye!!!' + Colors.RESET)
         exit()
