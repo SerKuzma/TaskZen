@@ -139,9 +139,6 @@ def delete_user(username_password, task_list):
         print(Colors.GREEN + f"User '{username_to_delete}' deleted successfully." 
         + Colors.RESET)
 
-        # Removes tasks associated with the deleted user from task_list
-        task_list = [task for task in task_list if task['username'] != username_to_delete]
-
         # Marks tasks as deleted if user was associated with them
         for task in task_list:
             if task['username'] == username_to_delete:
@@ -257,7 +254,7 @@ def read_tasks_from_file(file_path):
     # If tasks.txt does not exist, print a message 
     # and initialize task_list as an empty list.
     except FileNotFoundError:
-        print(Colors.RED + "Tasks file not found. Initializing with empty task" \
+        print(Colors.RED + "Tasks file not found. Initializing with empty task " \
         "list." + Colors.RESET)
         task_list = []
 
@@ -327,10 +324,10 @@ def view_mine(task_list, curr_user):
                 disp_str += f"Date Assigned: {t['assigned_date'].strftime(
                 DATETIME_STRING_FORMAT)}\n"
                 # Color the due date based on its relation to today's date
-                disp_str += f"Due Date: \t {color_due_date(t['due_date'].date(), today)}\n"
+                disp_str += f"Due Date: {color_due_date(t['due_date'].date(), today)}\n"
                 disp_str += f"Task Description: {t['description']}\n"
                 # Indicate if the task is completed or not
-                disp_str += (f"Completed: {Colors.GREEN + 'Yes' 
+                disp_str += (f"Completed: {Colors.GREEN + 'Yes'
                 + Colors.RESET if t['completed'] else Colors.RED + 'No' + Colors.RESET}\n")
                 print(disp_str)
 
@@ -724,11 +721,3 @@ while True:
 
     else:
         print(Colors.RED + "You have made a wrong choice. Please try again" + Colors.RESET)
-
-
-'''Hi!
-I have put a lot of time and energy in this program. I've tried to do my best
-into user-friendliness, robustness, defensive programming and readability of code.
-Any suggestions highly appreciated.
-Thank you!  
-'''
