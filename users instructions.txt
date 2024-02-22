@@ -4,7 +4,7 @@
         Navigate to the directory where task_manager.py is located using the cd command.
         Run the program by typing python task_manager.py and pressing Enter.
 
-        !!! The username is 'admin' and password is 'password' by default !!!
+        !!! The username is 'admin' and password is 'password' by default. Use it for initial login !!!
 
 2. Main Menu:
         
@@ -38,10 +38,15 @@
     - Viewing All Tasks:        
         Choose the option to view all tasks.
         All tasks in the system will be displayed with their details.
+        You will be prompt to choose the task you want to edit
+                You will be directed to the Menu to edit choosen task
         
     - Viewing My Tasks:        
         Choose the option to view your tasks.
         Only tasks assigned to the current user will be displayed.
+        You will be prompt to choose the task you want to edit
+                You will be directed to the Menu to edit choosen task
+        If current user doesen't have any tasks, you will be returned to the main menu
         
     - Displaying Statistics:        
         Choose the option to display statistics (only available for admin users).
