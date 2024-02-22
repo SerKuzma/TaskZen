@@ -396,12 +396,14 @@ def view_mine(task_list, curr_user):
                 disp_str += f"Assigned to: {t['username']}\n"
                 disp_str += f"Date Assigned: {t['assigned_date'].strftime(
                 DATETIME_STRING_FORMAT)}\n"
+                
                 # Colors and displays the due date based on its 
                 # relation to today's date
                 disp_str += (
                 f"Due Date: {color_due_date(t['due_date'].date(), today)}\n")
 
                 disp_str += f"Task Description: {t['description']}\n"
+
                 # Indicate if the task is completed or not
                 disp_str += (
                 f"Completed: {Colors.GREEN + 'Yes'
@@ -410,14 +412,17 @@ def view_mine(task_list, curr_user):
                 )
 
                 print(disp_str)
+
         # Check if tasks are found for the current user
         if not tasks_found:
             print()
             print(Colors.RED + "You have no tasks" + Colors.RESET)
             break  # Exit the loop if no tasks are found
         
+        # Calls function to choose a task to edit
         selected_task = choose_task_to_edit(task_list)
 
+        # Exit the loop if the user chooses not to edit task
         if selected_task is None:
             break
     
