@@ -1,0 +1,61 @@
+1. Running the Program:
+
+        Open a terminal or command prompt.
+        Navigate to the directory where task_manager.py is located using the cd command.
+        Run the program by typing python task_manager.py and pressing Enter.
+
+        !!! The username is 'admin' and password is 'password' by default !!!
+
+2. Main Menu:
+        
+        Upon running the program, you will see a main menu with options to choose from. The available options might include:
+        Registering a user
+        Deleting a user (admin only)
+        Adding a task
+        Deleting a task (admin only)
+        Viewing all tasks
+        Viewing my tasks
+        Displaying statistics (admin only)
+        Generating reports (admin only)
+        Exiting the program
+        
+    - Registering a User        
+        Choose the option to register a user.
+        Follow the prompts to enter the username and password for the new user.
+        
+    - Deleting a User:        
+        Choose the option to delete a user (only available for admin users).
+        Follow the prompts to select the user you want to delete.
+        
+    - Adding a Task:        
+        Choose the option to add a task.
+        Follow the prompts to enter details for the new task, such as title, assigned user, due date, and description.
+       
+    - Deleting a Task:        
+        Choose the option to delete a task (only available for admin users).
+        Follow the prompts to select the task you want to delete.
+        
+    - Viewing All Tasks:        
+        Choose the option to view all tasks.
+        All tasks in the system will be displayed with their details.
+        
+    - Viewing My Tasks:        
+        Choose the option to view your tasks.
+        Only tasks assigned to the current user will be displayed.
+        
+    - Displaying Statistics:        
+        Choose the option to display statistics (only available for admin users).
+        Various statistics about users and tasks will be displayed.
+        
+    - Generating Reports:        
+        Choose the option to generate reports (only available for admin users).
+        Reports summarizing task and user information will be generated and displayed.
+        
+    - Exiting the Program:        
+        Choose the option to exit the program.
+        The program will terminate, and you will return to the command line.
+        
+3. Handling Errors:        
+        If you encounter any errors or prompts for invalid input, follow the instructions provided by the program to correct them.
+
+By following these instructions, you should be able to effectively use your task_manager.py program to manage users and tasks.
